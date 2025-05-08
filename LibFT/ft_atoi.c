@@ -1,32 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iborge-g <iborge-g@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/06 16:47:28 by iborge-g          #+#    #+#             */
-/*   Updated: 2025/05/08 18:14:46 by iborge-g         ###   ########.fr       */
+/*   Created: 2025/05/08 17:06:54 by iborge-g          #+#    #+#             */
+/*   Updated: 2025/05/08 18:20:36 by iborge-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *hs, const char *nd, size_t len)
+int	atoi(const char *ptr)
 {
-	size_t	i;
-	size_t	j;
+	int	i;
+	int	nb;
+	int	sign;
 
 	i = 0;
-	j = 0;
-	while (i < len && hs[i])
+	nb = 0;
+	sign = 1;
+	while (ptr[i] == ' ' || ptr[i] >= 9 && ptr[i] <= 13)
 	{
-		j = 0;
-		while (hs[i + j] == nd[j] && nd[j] && (i + j) < len)
-			j++;
-		if (nd[j] == '\0')
-			return ((char *) hs[i]);
+		i += 1;
+	}
+	if (ptr[i] == '-')
+	{
+		sign = -1;
 		i++;
 	}
-	return (NULL);
+	else if (ptr[i] == '+')
+		i++;
+	while (ptr[i] >= '0' && ptr[i] <= '9')
+	{
+		nb = nb * 10 + (ptr[i] - 0);
+	}
+	return (nb * sign);
 }

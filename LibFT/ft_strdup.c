@@ -1,32 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iborge-g <iborge-g@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/06 16:47:28 by iborge-g          #+#    #+#             */
-/*   Updated: 2025/05/08 18:14:46 by iborge-g         ###   ########.fr       */
+/*   Created: 2025/05/02 16:16:26 by iborge-g          #+#    #+#             */
+/*   Updated: 2025/05/02 18:04:51 by iborge-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
 
-char	*ft_strnstr(const char *hs, const char *nd, size_t len)
+int	ft_strlen(char *str)
 {
-	size_t	i;
-	size_t	j;
+	int	i;
 
 	i = 0;
-	j = 0;
-	while (i < len && hs[i])
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
+
+char	*ft_strdup(char *src)
+{
+	char	*str;
+	int		i;
+
+	i = 0;
+	str = malloc((ft_strlen(src)) + 1);
+	if (!str)
+		return (NULL);
+	while (src[i] != '\0')
 	{
-		j = 0;
-		while (hs[i + j] == nd[j] && nd[j] && (i + j) < len)
-			j++;
-		if (nd[j] == '\0')
-			return ((char *) hs[i]);
+		str[i] = src[i];
 		i++;
 	}
-	return (NULL);
+	str[i] = '\0';
+	return (str);
 }
