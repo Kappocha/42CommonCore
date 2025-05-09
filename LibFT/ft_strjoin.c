@@ -1,40 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iborge-g <iborge-g@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 17:06:54 by iborge-g          #+#    #+#             */
-/*   Updated: 2025/05/09 17:03:39 by iborge-g         ###   ########.fr       */
+/*   Created: 2025/05/09 17:54:07 by iborge-g          #+#    #+#             */
+/*   Updated: 2025/05/09 18:09:58 by iborge-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *ptr)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int	i;
-	int	nb;
-	int	sign;
+	int		i;
+	int		j;
+	char	*sfin;
+	int		slen;
 
 	i = 0;
-	nb = 0;
-	sign = 1;
-	while (ptr[i] == ' ' || ptr[i] >= 9 && ptr[i] <= 13)
+	j = 0;
+	slen = ft_strlen(s1) + ft_strlen(s2);
+	sfin = malloc(slen + 1);
+	if (!sfin)
+		return (NULL);
+	while (s1[i] != '\0')
 	{
-		i += 1;
-	}
-	if (ptr[i] == '-')
-	{
-		sign = -1;
+		sfin[i] = s1[i];
 		i++;
 	}
-	else if (ptr[i] == '+')
-		i++;
-	while (ptr[i] >= '0' && ptr[i] <= '9')
+	while (s2[j] != '\0')
 	{
-		nb = nb * 10 + (ptr[i] - 0);
+		sfin[i] = s2[j];
+		i++;
+		j++;
 	}
-	return (nb * sign);
+	sfin[i] = '\0';
+	return (sfin);
 }

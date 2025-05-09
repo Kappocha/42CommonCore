@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iborge-g <iborge-g@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 17:06:54 by iborge-g          #+#    #+#             */
-/*   Updated: 2025/05/09 17:03:39 by iborge-g         ###   ########.fr       */
+/*   Created: 2025/05/09 18:10:27 by iborge-g          #+#    #+#             */
+/*   Updated: 2025/05/09 19:01:30 by iborge-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *ptr)
+int	sind (char c, char const *set)
 {
 	int	i;
-	int	nb;
-	int	sign;
 
 	i = 0;
-	nb = 0;
-	sign = 1;
-	while (ptr[i] == ' ' || ptr[i] >= 9 && ptr[i] <= 13)
-	{
-		i += 1;
-	}
-	if (ptr[i] == '-')
-	{
-		sign = -1;
-		i++;
-	}
-	else if (ptr[i] == '+')
-		i++;
-	while (ptr[i] >= '0' && ptr[i] <= '9')
-	{
-		nb = nb * 10 + (ptr[i] - 0);
-	}
-	return (nb * sign);
+}
+
+char	*ft_strtrim(char const *s1, char const *set)
+{
+	int	i;
+	char	*sfin;
+	int	start;
+	int	end;
+
+	i = 0;
 }
