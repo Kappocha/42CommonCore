@@ -6,7 +6,7 @@
 /*   By: iborge-g <iborge-g@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 10:32:21 by iborge-g          #+#    #+#             */
-/*   Updated: 2025/05/06 13:33:24 by iborge-g         ###   ########.fr       */
+/*   Updated: 2025/05/13 12:55:47 by iborge-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 			dst[i] = src[i];
 			i++;
 		}
-		dst[i] == '\0';
+		dst[i] = '\0';
 	}
 	return (src_len);
 }

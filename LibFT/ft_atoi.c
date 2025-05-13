@@ -6,7 +6,7 @@
 /*   By: iborge-g <iborge-g@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 17:06:54 by iborge-g          #+#    #+#             */
-/*   Updated: 2025/05/09 17:03:39 by iborge-g         ###   ########.fr       */
+/*   Updated: 2025/05/13 12:48:12 by iborge-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_atoi(const char *ptr)
 	i = 0;
 	nb = 0;
 	sign = 1;
-	while (ptr[i] == ' ' || ptr[i] >= 9 && ptr[i] <= 13)
+	while (ptr[i] == ' ' || (ptr[i] >= 9 && ptr[i] <= 13))
 	{
 		i += 1;
 	}

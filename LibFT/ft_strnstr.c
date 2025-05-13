@@ -6,7 +6,7 @@
 /*   By: iborge-g <iborge-g@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 16:47:28 by iborge-g          #+#    #+#             */
-/*   Updated: 2025/05/08 18:14:46 by iborge-g         ###   ########.fr       */
+/*   Updated: 2025/05/13 12:58:10 by iborge-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_strnstr(const char *hs, const char *nd, size_t len)
 		while (hs[i + j] == nd[j] && nd[j] && (i + j) < len)
 			j++;
 		if (nd[j] == '\0')
-			return ((char *) hs[i]);
+			return ((char *) &hs[i]);
 		i++;
 	}
 	return (NULL);

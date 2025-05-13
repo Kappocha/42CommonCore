@@ -6,7 +6,7 @@
 /*   By: iborge-g <iborge-g@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 10:11:31 by iborge-g          #+#    #+#             */
-/*   Updated: 2025/05/06 13:32:31 by iborge-g         ###   ########.fr       */
+/*   Updated: 2025/05/13 12:54:44 by iborge-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	unsigned char	*s;
-	unsigned char	*d;
-	size_t			i;
+	const unsigned char		*s;
+	unsigned char			*d;
+	size_t					i;
 
-	s = (unsigned char *)src;
-	d = (const unsigned char *)dst;
+	s = (const unsigned char *)src;
+	d = (unsigned char *)dst;
 	if (s == d || n == 0)
 		return (dst);
 	i = 0;

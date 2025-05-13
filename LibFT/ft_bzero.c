@@ -6,7 +6,7 @@
 /*   By: iborge-g <iborge-g@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:15:00 by iborge-g          #+#    #+#             */
-/*   Updated: 2025/05/06 13:30:24 by iborge-g         ###   ########.fr       */
+/*   Updated: 2025/05/13 12:48:36 by iborge-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	int				i;
+	size_t			i;
 	unsigned char	*ptr;
 
 	ptr = ((unsigned char *)s);

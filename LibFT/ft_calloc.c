@@ -6,15 +6,15 @@
 /*   By: iborge-g <iborge-g@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:31:04 by iborge-g          #+#    #+#             */
-/*   Updated: 2025/05/09 16:47:28 by iborge-g         ###   ########.fr       */
+/*   Updated: 2025/05/13 12:48:53 by iborge-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc (size_t count, size_t size)
+void	*ft_calloc(size_t count, size_t size)
 {
-	int		i;
+	size_t	i;
 	size_t	total;
 	char	*ptr;
 
