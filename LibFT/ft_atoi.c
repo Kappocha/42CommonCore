@@ -6,7 +6,7 @@
 /*   By: iborge-g <iborge-g@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 17:06:54 by iborge-g          #+#    #+#             */
-/*   Updated: 2025/05/13 12:48:12 by iborge-g         ###   ########.fr       */
+/*   Updated: 2025/05/14 16:32:23 by iborge-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,14 @@ int	ft_atoi(const char *ptr)
 	if (ptr[i] == '-')
 	{
 		sign = -1;
-		i++;
+		i += 1;
 	}
 	else if (ptr[i] == '+')
-		i++;
+		i += 1;
 	while (ptr[i] >= '0' && ptr[i] <= '9')
 	{
-		nb = nb * 10 + (ptr[i] - 0);
+		nb = nb * 10 + (ptr[i] - '0');
+		i += 1;
 	}
 	return (nb * sign);
 }
