@@ -6,7 +6,7 @@
 /*   By: iborge-g <iborge-g@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 11:52:30 by iborge-g          #+#    #+#             */
-/*   Updated: 2025/05/13 09:29:26 by iborge-g         ###   ########.fr       */
+/*   Updated: 2025/05/15 16:55:42 by iborge-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ char	**ft_split(char const *s, char c)
 {
 	int		count;
 	char	**arr;
-
+	if (!s)
+		return (NULL);
 	count = count_words(s, c);
 	arr = malloc((count + 1) * sizeof (char *));
 	if (!arr)

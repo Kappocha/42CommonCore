@@ -6,11 +6,12 @@
 /*   By: iborge-g <iborge-g@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 17:09:15 by iborge-g          #+#    #+#             */
-/*   Updated: 2025/05/13 13:03:58 by iborge-g         ###   ########.fr       */
+/*   Updated: 2025/05/15 19:02:03 by iborge-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 char	*caso(int start, int slen)
 {
@@ -37,7 +38,9 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	slen = 0;
 	while (s[slen])
 		slen++;
+	printf("La longitud de la palabra es %zu\n", slen);
 	sub = caso(start, slen);
+	printf("Sub es %s\n", sub);
 	if (!sub)
 		return (sub);
 	if (len > slen - start)

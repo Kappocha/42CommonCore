@@ -6,7 +6,7 @@
 /*   By: iborge-g <iborge-g@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 11:22:31 by iborge-g          #+#    #+#             */
-/*   Updated: 2025/05/13 11:38:27 by iborge-g         ###   ########.fr       */
+/*   Updated: 2025/05/15 16:44:23 by iborge-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ void	ft_putendl_fd(char *s, int fd)
 	if (!s)
 		return;
 	while (s[i] != '\0')
+	{
 		write(fd, &s[i], 1);
+		i++;
+	}
 	write(fd, "\n", 1);
 }

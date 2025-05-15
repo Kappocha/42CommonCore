@@ -6,11 +6,12 @@
 /*   By: iborge-g <iborge-g@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 18:10:27 by iborge-g          #+#    #+#             */
-/*   Updated: 2025/05/12 11:51:55 by iborge-g         ###   ########.fr       */
+/*   Updated: 2025/05/15 18:54:21 by iborge-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 int	instart(char const *s1, char const *set)
 {
@@ -19,6 +20,8 @@ int	instart(char const *s1, char const *set)
 	int	found;
 
 	i = 0;
+	if (!s1 || !set)
+		return (0);
 	while (s1[i] != '\0')
 	{
 		found = 0;
@@ -45,8 +48,10 @@ int	inend(char const *s1, char const *set)
 	int	j;
 	int	found;
 
+	if (!s1 || !set)
+		return (-1);
 	i = ft_strlen(s1) - 1;
-	while (s1[i] >= 0)
+	while (i >= 0)
 	{
 		found = 0;
 		j = 0;
