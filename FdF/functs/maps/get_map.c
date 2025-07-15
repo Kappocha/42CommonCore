@@ -6,6 +6,7 @@
 void read_file(int fd)
 {
     char *line;
+    lseek(fd, 0, SEEK_SET); // Asegúrate de empezar desde el principio del archivo
 
     while ((line = get_next_line(fd)) != NULL) {
         ft_printf("%s", line);
@@ -24,46 +25,68 @@ void    mem_map(int fd, t_point ***map)
     i = 0;
     lseek(fd, 0, SEEK_SET);
 
-    (*map) = malloc(n_rows * sizeof(t_point *));
+    *map = malloc((n_rows + 1) * sizeof(t_point *));
     if (!*map)
         return ;
     while (i < n_rows)
     {
         (*map)[i] = malloc(n_cols * sizeof(t_point));
         if (!(*map)[i]) {
-            while (i > 0) {
+            while (i > 0)
                 free((*map)[--i]);
-            }
             free(*map);
-            return ; // Memory allocation failed, clean up and exit
-        }       
-        i++; // Allocate memory for each row
+            return ;
+        }
+        i++;
     }
-    (*map)[i] = NULL; // Null-terminate the array of pointers
-    ft_printf("Map allocated with %d rows and %d cols\n", n_rows, n_cols);\
+    (*map)[i] = NULL;
+    ft_printf("Memoria reservada correctamente...\n");
 }
 
-void    parse_map(int fd)
+void    parse_map(int fd, t_point ***map)
 {
-    t_point **map;
     char    *line;
     char    **pline;
     int     x;
     int     y;
+    int     col;
 
     y = 0;
-    mem_map(fd, &map);
-    while ((line = get_next_line(fd)) != NULL) {
+    mem_map(fd, map);
+    lseek(fd, 0, SEEK_SET);
+    line = get_next_line(fd);
+    while (line != NULL)
+    {
         pline = ft_split(line, ' ');
-        x = 0;
-        while(pline[x] != NULL)
+        printf("Linea %i: %s\n", y, line);
+        if (!pline)
         {
-            map[y][x].z = ft_atoi(pline[x]);
+            free(line);
+            return ;
+        }
+        x = 0;
+        col = 0;
+        // Saltar los dos primeros valores SOLO en la primera línea
+        if (y == 0)
+            x = 2;
+        while (pline[x] != NULL)
+        {
+            (*map)[y][col].z = ft_atoi(pline[x]);
+            printf("Punto %i: %i\n", col, (*map)[y][col].z);
+            x++;
+            col++;
+        }
+        free(line);
+        x = 0;
+        while (pline[x] != NULL)
+        {
+            free(pline[x]);
             x++;
         }
-        y++;
         free(pline);
-        free(line);
+        y++;
+        line = get_next_line(fd);
     }
-    ft_printf("Parseado correctamente... enserio?");
+    (*map)[y] = NULL; // Null-terminate the last row
+    ft_printf("Parseado correctamente... enserio? \n");
 }

@@ -63,13 +63,19 @@ void show_window()
 
 int	main(void)
 {
+	t_point **mapi;
     int fd = open("10-2.fdf", O_RDONLY);
     if (fd == -1) {
         perror("Error al abrir el archivo");
         return (1);
     }
+    int n_rows = count_rows(fd);
     read_file(fd); // Tu función que lee e imprime el archivo línea a línea
-    parse_map(fd); // DO-RI-ME
+    parse_map(fd, &mapi); // DO-RI-ME
+	printf("Punto aleatorio del mapa %i", mapi[2][2].z);
+	for (int i = 0; i < n_rows; i++)
+    	free(mapi[i]);
+	free(mapi);
     close(fd);
     return (0);
 }

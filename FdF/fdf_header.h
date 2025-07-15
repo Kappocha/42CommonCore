@@ -37,6 +37,6 @@ typedef struct s_point {
 void    read_file(int fd);
 int     count_rows(int fd);
 int     count_cols(int fd);
-void    parse_map(int fd);
+void    parse_map(int fd, t_point ***map);
 
 #endif
