@@ -24,16 +24,23 @@ void    mem_map(int fd, t_point ***map)
     i = 0;
     lseek(fd, 0, SEEK_SET);
 
-    *map = malloc(n_rows * sizeof(t_point *));
+    (*map) = malloc(n_rows * sizeof(t_point *));
     if (!*map)
         return ;
     while (i < n_rows)
     {
         (*map)[i] = malloc(n_cols * sizeof(t_point));
-        if (!(*map)[i])
-            return ;
-        i++;
+        if (!(*map)[i]) {
+            while (i > 0) {
+                free((*map)[--i]);
+            }
+            free(*map);
+            return ; // Memory allocation failed, clean up and exit
+        }       
+        i++; // Allocate memory for each row
     }
+    (*map)[i] = NULL; // Null-terminate the array of pointers
+    ft_printf("Map allocated with %d rows and %d cols\n", n_rows, n_cols);\
 }
 
 void    parse_map(int fd)
@@ -43,6 +50,7 @@ void    parse_map(int fd)
     char    **pline;
     int     x;
     int     y;
+
     y = 0;
     mem_map(fd, &map);
     while ((line = get_next_line(fd)) != NULL) {

@@ -31,7 +31,9 @@ int count_cols(int fd)
     while (pline[i] != NULL)
     {
         x++;
+        i++;
     }
+    free(pline[i]);
     free(pline);
     free(line);
     return(x);
