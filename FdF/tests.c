@@ -72,7 +72,7 @@ int	main(void)
     int n_rows = count_rows(fd);
     read_file(fd); // Tu función que lee e imprime el archivo línea a línea
     parse_map(fd, &mapi); // DO-RI-ME
-	printf("Punto aleatorio del mapa %i", mapi[2][2].z);
+	printf("Punto aleatorio del mapa %i", mapi[9][9].z);
 	for (int i = 0; i < n_rows; i++)
     	free(mapi[i]);
 	free(mapi);
