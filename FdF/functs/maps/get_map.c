@@ -71,6 +71,8 @@ void    parse_map(int fd, t_point ***map)
             x = 2;
         while (pline[x] != NULL)
         {
+            (*map)[y][col].x = x;
+            (*map)[y][col].y = y;
             (*map)[y][col].z = ft_atoi(pline[x]);
             printf("Punto %i: %i\n", col, (*map)[y][col].z);
             x++;
