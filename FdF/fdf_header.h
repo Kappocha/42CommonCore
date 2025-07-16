@@ -30,6 +30,8 @@ typedef	struct	s_data {
 }			t_data;
 
 typedef struct s_point {
+    int         x;
+    int         y;
     int         z;
     unsigned int    color;
 }           t_point;
@@ -38,5 +40,6 @@ void    read_file(int fd);
 int     count_rows(int fd);
 int     count_cols(int fd);
 void    parse_map(int fd, t_point ***map);
+void    draw_grid(t_data *data, int rows, int cols, t_point **map);
 
 #endif
