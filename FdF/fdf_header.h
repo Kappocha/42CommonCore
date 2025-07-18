@@ -36,10 +36,16 @@ typedef struct s_point {
     unsigned int    color;
 }           t_point;
 
+typedef struct s_map {
+    int     rows_num;
+    int     cols_num;
+}           s_map;
+
 void    read_file(int fd);
 int     count_rows(int fd);
 int     count_cols(int fd);
-void    parse_map(int fd, t_point ***map);
+void    parse_map(int fd, t_point ***map, s_map *info);
 void    draw_grid(t_data *data, int rows, int cols, t_point **map);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 #endif

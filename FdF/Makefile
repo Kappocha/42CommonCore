@@ -18,21 +18,23 @@ SRCDIR = src
 OBJDIR = obj
 INCLUDES = -Ilibft -Imlx
 
-SRC = tests.c functs/maps/get_map.c functs/maps/rows_col.c
+SRC = tests.c functs/maps/get_map.c functs/maps/rows_col.c \
+functs/drawing/base_draw.c
 OBJ = $(SRC:.c=.o)
 
 LIBMLX = mlx/libmlx.a
 LIBFT = libft/libft.a
+CFLAGS = -Wall -Wextra -Werror
 LIBS = $(LIBFT) $(LIBMLX) -lXext -lX11 -lm
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) -o $(NAME) $(OBJ) $(LIBS) $(INCLUDES)
+	$(CC) -g $(CFLAGS) -o $(NAME) $(OBJ) $(LIBS) $(INCLUDES)
 
 # Crear carpeta de objetos y compilar .o
 $(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
-	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
+	$(CC) -g $(CFLAGS) -c $< -o $@ $(INCLUDES)
 
 # Crear carpeta obj si no existe
 $(OBJDIR):

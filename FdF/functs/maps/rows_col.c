@@ -1,4 +1,5 @@
 #include "../../fdf_header.h"
+#include <stdio.h>
 #include <unistd.h>
 
 int count_rows(int fd)
@@ -10,8 +11,8 @@ int count_rows(int fd)
     lseek(fd, 0, SEEK_SET);
     line = get_next_line(fd);
     while (line != NULL) {
-        y++;
         free(line);
+        y++;
         line = get_next_line(fd);
     }
     return (y);
@@ -21,20 +22,22 @@ int count_cols(int fd)
     char    *line;
     char    **pline;
     int x;
-    int i;
+    int     len;
 
     x = 0;
     lseek(fd, 0, SEEK_SET);
     line = get_next_line(fd);
-    pline = ft_split(line, ' ');
-    i = 0;
-    while (pline[i] != NULL)
-    {
-        x++;
-        i++;
+    len = ft_strlen(line);
+    if (line[len - 1] == '\n') {
+        line[len - 1] = '\0';
     }
-    free(pline[i]);
+    pline = ft_split(line, ' ');
+    while (pline[x])
+    {
+        free(pline[x]);
+        x++;
+    }
     free(pline);
     free(line);
-    return(x);
+    return (x);
 }
