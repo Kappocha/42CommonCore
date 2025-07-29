@@ -1,6 +1,6 @@
 #include "../../fdf_header.h"
 #include <stdio.h>
-#define ESPACIADO 30
+#define ESPACIADO 40
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -17,8 +17,6 @@ void draw_line(int x0, int y0, int x1, int y1, t_data *data)
     int sx = (x0 < x1) ? 1 : -1;
     int sy = (y0 < y1) ? 1 : -1;
     int err = dx - dy;
-
-    //printf("Toda la informacion\n dx : %i\n dy : %i\n sx : %i\n sy : %i\n err : %i\n", dx, dy, sx, sy, err);
 
     while (1)
     {
@@ -53,12 +51,10 @@ void draw_grid(t_data *data, int rows, int cols, t_point **map)
             if (x < cols - 1) {
                 draw_line(map[y][x].x * ESPACIADO, map[y][x].y * ESPACIADO,
                     map[y][x + 1].x * ESPACIADO, map[y][x + 1].y * ESPACIADO, data);
-                printf("Punto x y : %i %i\n", map[y][x].x, map[y][x].y);
             }
             if (y < rows - 1) {
                 draw_line(map[y][x].x * ESPACIADO, map[y][x].y * ESPACIADO,
                     map[y + 1][x].x * ESPACIADO, map[y + 1][x].y * ESPACIADO, data);
-                printf("Punto x y : %i %i\n", map[y][x].x, map[y][x].y);
             }
             x++;
         }

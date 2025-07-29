@@ -39,13 +39,27 @@ typedef struct s_point {
 typedef struct s_map {
     int     rows_num;
     int     cols_num;
-}           s_map;
+}           t_map;
+
+typedef struct s_vars {
+    void    *mlx;
+    void    *win;
+}           t_vars;
+
+typedef struct s_program {
+    t_vars vars;
+    t_data img;
+    t_map info;
+    t_point **map;
+}               t_program;
 
 void    read_file(int fd);
 int     count_rows(int fd);
 int     count_cols(int fd);
-void    parse_map(int fd, t_point ***map, s_map *info);
+void    parse_map(int fd, t_point ***map, t_map *info);
 void    draw_grid(t_data *data, int rows, int cols, t_point **map);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void    show_window(t_map info, t_point **map, t_program *program);
+void    free_map(t_point **map, int rows);
 
 #endif

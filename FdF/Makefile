@@ -18,13 +18,13 @@ SRCDIR = src
 OBJDIR = obj
 INCLUDES = -Ilibft -Imlx
 
-SRC = tests.c functs/maps/get_map.c functs/maps/rows_col.c \
-functs/drawing/base_draw.c
+SRC = main.c functs/maps/get_map.c functs/maps/rows_col.c \
+functs/drawing/base_draw.c functs/display/windows_utils.c
 OBJ = $(SRC:.c=.o)
 
 LIBMLX = mlx/libmlx.a
 LIBFT = libft/libft.a
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS =
 LIBS = $(LIBFT) $(LIBMLX) -lXext -lX11 -lm
 
 all: $(NAME)
