@@ -29,20 +29,27 @@ int close_window(int keycode, t_program *program)
         cleanup_and_exit(program);
     return (0);
 }
+int close_window_esc(t_program *program)
+{
+    cleanup_and_exit(program);
+    return (0);
+}
 
 void show_window(t_map info, t_point **map, t_program *program)
 {
     program->info = info;
     program->map = map;
     program->vars.mlx = mlx_init();
+    program->img.height = 1080;
+    program->img.width = 1920;
     if (!program->vars.mlx)
         return; // Manejo simple de error
-    program->vars.win = mlx_new_window(program->vars.mlx, 1920, 1080, "FACTORIA DE FICCION");
-    program->img.img = mlx_new_image(program->vars.mlx, 1920, 1080);
+    program->vars.win = mlx_new_window(program->vars.mlx, program->img.width, program->img.height, "FACTORIA DE FICCION");
+    program->img.img = mlx_new_image(program->vars.mlx, program->img.width, program->img.height);
     program->img.addr = mlx_get_data_addr(program->img.img, &program->img.bits_per_pixel, &program->img.line_length, &program->img.endian);
     mlx_put_image_to_window(program->vars.mlx, program->vars.win, program->img.img, 0, 0);
     draw_grid(&program->img, info.rows_num, info.cols_num, map);
-    // Hook: pasa la estructura completa para liberar todo después
+    mlx_hook(program->vars.win, 17, 0, close_window_esc, program);
     mlx_hook(program->vars.win, 2, 1L<<0, close_window, program);
     mlx_loop(program->vars.mlx);
 }

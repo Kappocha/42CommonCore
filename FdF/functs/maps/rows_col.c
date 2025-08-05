@@ -20,24 +20,34 @@ int count_rows(int fd)
 int count_cols(int fd)
 {
     char    *line;
-    char    **pline;
-    int x;
+    int     x;
+    int     in_word;
     int     len;
+    int     cols;
 
     x = 0;
+    cols = 0;
+    in_word = 0;
     lseek(fd, 0, SEEK_SET);
     line = get_next_line(fd);
+    if (!line)
+        return 0;
     len = ft_strlen(line);
-    if (line[len - 1] == '\n') {
+    if (line[len - 1] == '\n')
         line[len - 1] = '\0';
-    }
-    pline = ft_split(line, ' ');
-    while (pline[x])
+    while (line[x])
     {
-        free(pline[x]);
+        if (line[x] != ' ' && !in_word)
+        {
+            cols++;
+            in_word = 1;
+        }
+        else if (line[x] == ' ')
+        {
+            in_word = 0;
+        }
         x++;
     }
-    free(pline);
     free(line);
-    return (x);
+    return (cols);
 }
