@@ -12,7 +12,7 @@
 
 #include "fdf_header.h"
 
-int	main(void)
+int	main(int argc, char *argv[])
 {
     t_program program;
     int fd;
@@ -23,7 +23,7 @@ int	main(void)
     program.vars.win = NULL;
     program.img.img = NULL;
 
-    fd = open("./maps/test_maps/10-2.fdf", O_RDONLY);
+    fd = open(argv[1], O_RDONLY);
     if (fd == -1) {
         perror("Error al abrir el archivo");
         return (1);
