@@ -63,14 +63,16 @@ void draw_grid(t_data *data, int rows, int cols, t_point **map)
     printf("%i %i \n", data->width, data->height);
     printf("%i %i \n", rows, cols);
     espaciado = (data->width / (cols + rows)) / 2;
-    if (espaciado < 3)
-        espaciado = 3;
-    offset_x = (data->width - cols * espaciado) / 2;
-    offset_y = (data->height - rows * espaciado) / 2;
+    if (espaciado < 2)
+        espaciado = 2;
+    offset_x = (data->width - cols * espaciado);
+    offset_y = (data->height - rows * espaciado);
+    if (rows <= 201 || cols <= 201)
+    {
+        offset_x /= 2;
+        offset_y /= 2;
+    }
     printf("%i", espaciado);
-
-    offset_x = 0;
-    offset_y = 0;
 
     for (y = 0; y < rows; y++) {
         for (x = 0; x < cols; x++) {
