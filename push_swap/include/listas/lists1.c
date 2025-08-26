@@ -35,6 +35,7 @@ void ss (Node **stacka, Node **stackb)
         int tmp;
         tmp = (*stackb)->num;
         (*stackb)->num = (*stackb)->next->num;
+        (*stackb)->next->num = tmp;
     }
 }
 

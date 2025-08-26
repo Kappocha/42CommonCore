@@ -13,9 +13,6 @@
 NAME = push_swap
 
 CC = gcc
-
-SRCDIR = src
-OBJDIR = obj
 INCLUDES = -Ilibft
 
 SRC = main.c include/listas/lists1.c include/listas/lists2.c \
@@ -26,25 +23,21 @@ include/aux/push_swap_utils.c
 OBJ = $(SRC:.c=.o)
 
 LIBFT = libft/libft.a
-CFLAGS =
-LIBS = $(LIBFT) $(LIBMLX) -g -fsanitize=address
+CFLAGS = -g -fsanitize=address
+LIBS = $(LIBFT)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) -g $(CFLAGS) -o $(NAME) $(OBJ) $(LIBS) $(INCLUDES)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBS) $(INCLUDES)
 
-# Crear carpeta de objetos y compilar .o
-$(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
-	$(CC) -g $(CFLAGS) -c $< -o $@ $(INCLUDES)
-
-# Crear carpeta obj si no existe
-$(OBJDIR):
-	mkdir -p $(OBJDIR)
+# Regla para compilar archivos .c a .o
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
 
 # Limpiar objetos
 clean:
-	rm -rf $(OBJDIR)
+	rm -f $(OBJ)
 
 # Limpiar todo
 fclean: clean

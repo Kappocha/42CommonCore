@@ -13,6 +13,14 @@ int main(int argc, char **argv)
         printf("Error al inicializar la lista\n");
         return (1);
     }
+    
+    // Si ya está ordenado, no hacer nada
+    if (is_sorted(stack_a))
+    {
+        free_list(stack_a);
+        return (0);
+    }
+    
     start_stack(&stack_a, &stack_b, &contador);
     sort_three(&stack_a, &contador);
     move_all_b_to_a(&stack_a, &stack_b, &contador);

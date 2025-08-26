@@ -35,6 +35,17 @@ t_move calc_best_move(Node *stacka, Node *stackb)
         actual.moves_b = calc_move_b(stackb, i);
         actual.moves_a = calc_move_a(stacka, tmpb->num);
         actual.total = absolute(actual.moves_a) + absolute(actual.moves_b);
+        
+        // Optimización: si ambos movimientos son en la misma dirección,
+        // se pueden hacer simultáneamente (rr o rrr)
+        if ((actual.moves_a > 0 && actual.moves_b > 0) || 
+            (actual.moves_a < 0 && actual.moves_b < 0))
+        {
+            int max_moves = (absolute(actual.moves_a) > absolute(actual.moves_b)) ? 
+                           absolute(actual.moves_a) : absolute(actual.moves_b);
+            actual.total = max_moves;
+        }
+        
         if (actual.total < best.total)
             best = actual;
         tmpb = tmpb->next;
