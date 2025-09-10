@@ -19,15 +19,11 @@ SRC = main.c include/listas/lists1.c include/listas/lists2.c \
 include/listas/lists3.c include/node/node_functs.c \
 include/turk/movement.c include/aux/aux.c include/turk/stack_move.c \
 include/aux/push_swap_utils.c
-
 OBJ = $(SRC:.c=.o)
-
 LIBFT = libft/libft.a
 CFLAGS = -g -fsanitize=address
 LIBS = $(LIBFT)
-
 all: $(NAME)
-
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBS) $(INCLUDES)
 
@@ -45,5 +41,4 @@ fclean: clean
 
 # Recompilar desde cero
 re: fclean all
-
 .PHONY: all clean fclean re

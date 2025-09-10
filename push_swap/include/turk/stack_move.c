@@ -5,17 +5,15 @@ void start_stack(Node **stacka, Node **stackb, int *counter)
     int total = stack_size(*stacka);
     int i = 0;
     int to_move = total - 3;
-    
-    // Asegurarse de que no movemos más de lo necesario
     if (to_move <= 0)
         return;
-    
+
     while (i < to_move && *stacka && stack_size(*stacka) > 3)
     {
         pb(stacka, stackb);
         i++;
         (*counter)++;
-        printf("pb\n");
+        ft_printf("pb\n");
     }
 }
 
@@ -23,11 +21,9 @@ void sort_three(Node **stacka, int *count)
 {
     if (!stacka || !*stacka)
         return;
-    
-    // Verificar que hay al menos 3 elementos
     if (!(*stacka)->next || !(*stacka)->next->next)
         return;
-    
+
     int a = (*stacka)->num;
     int b = (*stacka)->next->num;
     int c = (*stacka)->next->next->num;
@@ -36,39 +32,38 @@ void sort_three(Node **stacka, int *count)
     {
         sa(stacka);
         (*count)++;
-        printf("sa\n");
+        ft_printf("sa\n");
     }
     else if (a > b && b > c)
     {
         sa(stacka);
         (*count)++;
-        printf("sa\n");
+        ft_printf("sa\n");
         rra(stacka);
         (*count)++;
-        printf("rra\n");
+        ft_printf("rra\n");
     }
     else if (a > b && b < c && a > c)
     {
         ra(stacka);
         (*count)++;
-        printf("ra\n");
+        ft_printf("ra\n");
     }
     else if (a < b && b > c && a < c)
     {
         sa(stacka);
         (*count)++;
-        printf("sa\n");
+        ft_printf("sa\n");
         ra(stacka);
         (*count)++;
-        printf("ra\n");
+        ft_printf("ra\n");
     }
     else if (a < b && b > c && a > c)
     {
         rra(stacka);
         (*count)++;
-        printf("rra\n");
+        ft_printf("rra\n");
     }
-    // Si está ordenado (1 2 3), no hace falta nada
 }
 
 int check_doubly_linked_list(Node *head)
@@ -79,8 +74,7 @@ int check_doubly_linked_list(Node *head)
     {
         if (current->prev != prev)
         {
-            printf("Error de integridad: nodo %p prev=%p (debería ser %p)\n",
-                   (void*)current, (void*)current->prev, (void*)prev);
+            ft_printf("Error\n");
             return 0;
         }
         prev = current;
@@ -95,8 +89,43 @@ void move_all_b_to_a(Node **stacka, Node **stackb, int *counter)
     while (*stackb)
     {
         t_move best = calc_best_move(*stacka, *stackb);
-        
-        // Posicionar stack B para el elemento óptimo
+
+        int common_move;
+        if (best.moves_a > 0 && best.moves_b > 0)
+        {
+            if (best.moves_a < best.moves_b)
+                common_move = best.moves_a;
+            else
+                common_move = best.moves_b;
+            i = 0;
+            while (i < common_move)
+            {
+                rr(stacka, stackb);
+                (*counter)++;
+                ft_printf("rr\n");
+                i++;
+                best.moves_a--;
+                best.moves_b--;
+            }
+            
+        }
+        else if (best.moves_a < 0 && best.moves_b < 0)
+        {
+            if (-best.moves_a < -best.moves_b)
+                common_move = -best.moves_a;
+            else
+                common_move = -best.moves_b;
+            i = 0;
+            while (i < common_move)
+            {
+                rrr(stacka, stackb);
+                (*counter)++;
+                ft_printf("rrr\n");
+                i++;
+                best.moves_a++;
+                best.moves_b++;
+            }
+        }
         if (best.moves_b > 0)
         {
             i = 0;
@@ -104,7 +133,7 @@ void move_all_b_to_a(Node **stacka, Node **stackb, int *counter)
             {
                 rb(stackb);
                 (*counter)++;
-                printf("rb\n");
+                ft_printf("rb\n");
                 i++;
             }
         }
@@ -115,12 +144,10 @@ void move_all_b_to_a(Node **stacka, Node **stackb, int *counter)
             {
                 rrb(stackb);
                 (*counter)++;
-                printf("rrb\n");
+                ft_printf("rrb\n");
                 i++;
             }
         }
-        
-        // Posicionar stack A para recibir el elemento
         if (best.moves_a > 0)
         {
             i = 0;
@@ -128,7 +155,7 @@ void move_all_b_to_a(Node **stacka, Node **stackb, int *counter)
             {
                 ra(stacka);
                 (*counter)++;
-                printf("ra\n");
+                ft_printf("ra\n");
                 i++;
             }
         }
@@ -139,14 +166,12 @@ void move_all_b_to_a(Node **stacka, Node **stackb, int *counter)
             {
                 rra(stacka);
                 (*counter)++;
-                printf("rra\n");
+                ft_printf("rra\n");
                 i++;
             }
         }
-        
-        // Mover el elemento
         pa(stacka, stackb);
         (*counter)++;
-        printf("pa\n");
+        ft_printf("pa\n");
     }
 }
