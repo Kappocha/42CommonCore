@@ -73,7 +73,7 @@ int		ft_putnbr(int n);
 int		ft_printhexl(unsigned int n);
 int		ft_printhexu(unsigned int n);
 int		ft_putptr(void *n);
-int     ft_putuns(unsigned int n);
+int		ft_putuns(unsigned int n);
 char	*get_next_line(int fd);
 char	*ft_strjoin(char const *dst, char const *src);
 char	*ft_strchr(char const *s, int c);

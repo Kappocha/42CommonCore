@@ -10,22 +10,23 @@
 #                                                                              #
 # **************************************************************************** #
 
-# Variables
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-# Archivos fuente
 SERVER_SRC = server.c
 CLIENT_SRC = client.c
+SERVER_BONUS = server_bonus.c
+CLIENT_BONUS = client_bonus.c
 
-# Ejecutables
 SERVER = server
 CLIENT = client
+SERVER_BONUS_EXE = server_bonus
+CLIENT_BONUS_EXE = client_bonus
 
-# Targets
 all: $(SERVER) $(CLIENT)
+bonus: $(SERVER_BONUS_EXE) $(CLIENT_BONUS_EXE)
 
 $(SERVER): $(SERVER_SRC)
 	$(CC) $(CFLAGS) -o $(SERVER) $(SERVER_SRC) -L$(LIBFT_DIR) -lft
@@ -33,11 +34,17 @@ $(SERVER): $(SERVER_SRC)
 $(CLIENT): $(CLIENT_SRC)
 	$(CC) $(CFLAGS) -o $(CLIENT) $(CLIENT_SRC) -L$(LIBFT_DIR) -lft
 
+$(SERVER_BONUS_EXE): $(SERVER_BONUS)
+	$(CC) $(CFLAGS) -o $(SERVER_BONUS_EXE) $(SERVER_BONUS) -L$(LIBFT_DIR) -lft
+
+$(CLIENT_BONUS_EXE): $(CLIENT_BONUS)
+	$(CC) $(CFLAGS) -o $(CLIENT_BONUS_EXE) $(CLIENT_BONUS) -L$(LIBFT_DIR) -lft
+
 clean:
 	@echo "Limpiando archivos objeto..."
 
 fclean: clean
-	rm -f $(SERVER) $(CLIENT)
+	rm -f $(SERVER) $(CLIENT) $(SERVER_BONUS_EXE) $(CLIENT_BONUS_EXE)
 	@echo "Ejecutables eliminados."
 
 re: fclean all
