@@ -2,8 +2,9 @@
 
 void	ft_handler(int sig, siginfo_t *info, void *context)
 {
-	static int	current_char = 0;
-	static int	bit_count = 0;
+	static unsigned int	current_char = 0;
+	static int			bit_count = 0;
+	unsigned char		byte_to_write;
 
 	(void)context;
 	if (sig == SIGUSR1)
@@ -19,7 +20,10 @@ void	ft_handler(int sig, siginfo_t *info, void *context)
 			kill(info->si_pid, SIGUSR1);
 		}
 		else
-			write(1, &current_char, 1);
+		{
+			byte_to_write = (unsigned char)current_char;
+			write(1, &byte_to_write, 1);
+		}
 		current_char = 0;
 		bit_count = 0;
 	}

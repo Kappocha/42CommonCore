@@ -6,7 +6,7 @@ void	ft_send_bit(pid_t pid, int bit)
 		kill(pid, SIGUSR1);
 	else
 		kill(pid, SIGUSR2);
-	usleep(100);
+	usleep(500);
 }
 
 void	ft_send_message(pid_t pid, char *msg)
